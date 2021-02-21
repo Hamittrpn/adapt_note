@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:adapt_note/models/category.dart';
 import 'package:adapt_note/note_detail.dart';
 import 'package:adapt_note/utils/database_helper.dart';
@@ -34,32 +34,64 @@ class NoteList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       key: _scaffoldKey,
       appBar: AppBar(
         title: Center(
           child: Text("Adapt Note"),
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              addCategoryDialog(context);
-            },
-            tooltip: "AddCategory",
-            heroTag: "Add Category",
-            child: Icon(Icons.category_outlined),
-            mini: true,
+      floatingActionButton: FabCircularMenu(
+          fabOpenColor: Colors.red,
+          fabOpenIcon: Icon(
+            Icons.menu,
+            color: Colors.white,
           ),
-          FloatingActionButton(
-            onPressed: () => _goToDetailPage(context),
-            tooltip: "Add Note",
-            heroTag: "AddNote",
-            child: Icon(Icons.note_add),
+          fabCloseIcon: Icon(
+            Icons.close,
+            color: Colors.white,
           ),
-        ],
-      ),
+          children: <Widget>[
+            IconButton(
+                icon: Icon(
+                  Icons.category_outlined,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                tooltip: "Add Category",
+                onPressed: () {
+                  addCategoryDialog(context);
+                }),
+            IconButton(
+              icon: Icon(
+                Icons.add_circle_rounded,
+                size: 40,
+                color: Colors.white,
+              ),
+              tooltip: "Add Note",
+              onPressed: () => _goToDetailPage(context),
+            )
+          ]),
+      // floatingActionButton: Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: [
+      //     FloatingActionButton(
+      //       onPressed: () {
+      //         addCategoryDialog(context);
+      //       },
+      //       tooltip: "AddCategory",
+      //       heroTag: "Add Category",
+      //       child: Icon(Icons.category_outlined),
+      //       mini: true,
+      //     ),
+      //     FloatingActionButton(
+      //       onPressed: () => _goToDetailPage(context),
+      //       tooltip: "Add Note",
+      //       heroTag: "AddNote",
+      //       child: Icon(Icons.add),
+      //     ),
+      //   ],
+      // ),
       body: Notes(),
     );
   }
