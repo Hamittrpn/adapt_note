@@ -1,34 +1,32 @@
 class Category {
   int categoryID;
-  String categoryTitle;
+  String categoryName;
 
   // Kategori eklerken kullanılacak. Çünkü id db tarafından oluşturuluyor.
   Category({
-    this.categoryTitle,
+    this.categoryName,
   });
 
   Category.withID({
     this.categoryID,
-    this.categoryTitle,
+    this.categoryName,
   });
 
   Map<String, dynamic> toMap() {
     var map = Map<String, dynamic>();
-    map["CategoryID"] = categoryID;
-    map["CategoryTitle"] = categoryTitle;
+    map["categoryID"] = categoryID;
+    map["categoryName"] = categoryName;
 
     return map;
   }
 
   Category.fromMap(Map<String, dynamic> map) {
-    this.categoryID = map["CategoryID"];
-    this.categoryTitle = map["CategoryTitle"];
+    this.categoryID = map["categoryID"];
+    this.categoryName = map["categoryName"];
   }
 
   @override
   String toString() {
-    return 'Category{CategoryID: $categoryID, CategoryTitle: $categoryTitle}';
+    return 'Category{categoryID: $categoryID, categoryName: $categoryName}';
   }
-
-  
 }
